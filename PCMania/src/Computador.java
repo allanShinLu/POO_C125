@@ -1,19 +1,28 @@
 public class Computador {
     String marca;
     float preco;
-    HardwareBasico hardware = new HardwareBasico();
+    HardwareBasico[] hardwares = new HardwareBasico[10];
     MemoriUSB memoria = new MemoriUSB();
-
+    Cliente cliente = new Cliente();
     SistemaOperacional sistema = new SistemaOperacional();
     void mostrarPCConfigs() {
         System.out.println("Marca: " + marca);
         System.out.println("Preço: R$" + preco);
-        System.out.println("Processador: " + hardware.nome);
-        System.out.println(hardware.capacidadeRam + " Gb de Memória RAM");
-        if (hardware.capacidade < 500)
-            System.out.println(hardware.capacidade + "Tb de HD");
-        else
-            System.out.println(hardware.capacidade + "Gb de HD");
+        for (int i = 0; i < hardwares.length; i++) {
+            if(hardwares[i] == null) {
+                break;
+            }
+            if (i == 0) {
+                System.out.println("Processador " + hardwares[i].nome + " (" + hardwares[i].capacidade + " Mhz) ");
+            }
+            if (i == 1) {
+                System.out.println(hardwares[i].nome + " de " + hardwares[i].capacidade + "Gb");
+            }
+            if (i == 2) {
+                System.out.println(hardwares[i].nome + " de " + hardwares[i].capacidade + "Gb");
+            }
+        }
+
         System.out.println("Sistema operacional: " + sistema.nome + " (" + sistema.tipo + " bits" + ")");
 
         if (memoria.nome == "Pen-drive")
@@ -21,5 +30,6 @@ public class Computador {
         else
             System.out.println("Acompanha " + memoria.nome + " de " + memoria.capacidade + "Tb");
         System.out.println();
+        }
     }
-}
+
